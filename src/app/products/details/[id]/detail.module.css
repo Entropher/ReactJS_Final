@@ -1,0 +1,122 @@
+.page {
+  min-height: 70vh;
+  padding: 32px 24px 64px;
+  background: #fafafa;
+  color: #171717;
+}
+
+.backLink {
+  display: inline-block;
+  margin-bottom: 24px;
+  color: #424242;
+  font-size: 14px;
+}
+
+.backLink:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.product {
+  display: grid;
+  width: min(100%, 1120px);
+  margin: 0 auto;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 48px;
+  align-items: start;
+}
+
+.imageFrame {
+  display: grid;
+  min-height: 440px;
+  padding: 44px;
+  place-items: center;
+  background: #f1f1f1;
+}
+
+.imageFrame img {
+  width: 100%;
+  height: 350px;
+  object-fit: contain;
+}
+
+.details {
+  padding-top: 18px;
+}
+
+.category {
+  margin-bottom: 12px;
+  color: #737373;
+  font-size: 13px;
+  text-transform: capitalize;
+}
+
+.details h1 {
+  font-size: 30px;
+  font-weight: 500;
+  line-height: 1.25;
+}
+
+.rating {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 16px;
+  color: #f5a623;
+  font-size: 19px;
+  letter-spacing: 1px;
+}
+
+.reviews {
+  color: #737373;
+  font-size: 13px;
+  letter-spacing: 0;
+}
+
+.ratingValue {
+  color: #292929;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0;
+}
+
+.price {
+  margin-top: 24px;
+  font-size: 30px;
+  font-weight: 700;
+}
+
+.description {
+  margin-top: 24px;
+  color: #555;
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+@media (max-width: 700px) {
+  .page {
+    padding: 24px 16px 48px;
+  }
+
+  .product {
+    grid-template-columns: 1fr;
+    gap: 22px;
+  }
+
+  .imageFrame {
+    min-height: 300px;
+    padding: 28px;
+  }
+
+  .imageFrame img {
+    height: 240px;
+  }
+
+  .details {
+    padding-top: 0;
+  }
+
+  .details h1 {
+    font-size: 24px;
+  }
+}

@@ -1,0 +1,160 @@
+.page {
+  min-height: 70vh;
+  padding: 48px 20px 72px;
+  background: #f7f8fc;
+  color: #20243a;
+}
+
+.card {
+  width: min(100%, 680px);
+  margin: 0 auto;
+  padding: 36px;
+  border: 1px solid #e5e8f0;
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: 0 12px 36px rgb(31 48 100 / 7%);
+}
+
+.eyebrow {
+  margin-bottom: 8px;
+  color: #405ac2;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.card h1 {
+  font-size: 30px;
+  font-weight: 700;
+}
+
+.description {
+  margin-top: 8px;
+  color: #687087;
+  line-height: 1.6;
+}
+
+.securityNote {
+  margin-top: 12px;
+  padding: 11px 13px;
+  border-radius: 7px;
+  background: #f0f3fc;
+  color: #45506c;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.form {
+  display: grid;
+  margin-top: 28px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px 16px;
+}
+
+.field {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.field label {
+  color: #343a50;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.field input {
+  width: 100%;
+  min-height: 46px;
+  padding: 0 12px;
+  border: 1px solid #d6dae5;
+  border-radius: 7px;
+  background: #fff;
+  color: #20243a;
+  font: inherit;
+}
+
+.field input:focus {
+  border-color: #405ac2;
+  outline: 3px solid rgb(64 90 194 / 16%);
+}
+
+.field input[aria-invalid="true"] {
+  border-color: #b3261e;
+}
+
+.fieldError,
+.submitError {
+  color: #a32620;
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.submitError,
+.success,
+.submitButton {
+  grid-column: 1 / -1;
+}
+
+.submitError,
+.success {
+  padding: 12px 14px;
+  border-radius: 7px;
+  line-height: 1.5;
+}
+
+.submitError {
+  background: #fff1f0;
+}
+
+.success {
+  background: #edf7ef;
+  color: #24623a;
+  font-size: 14px;
+}
+
+.submitButton {
+  min-height: 48px;
+  margin-top: 2px;
+  border: 0;
+  border-radius: 7px;
+  background: #284bc1;
+  color: #fff;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 700;
+  transition: background-color 150ms ease;
+}
+
+.submitButton:hover:not(:disabled) {
+  background: #1e3997;
+}
+
+.submitButton:focus-visible {
+  outline: 3px solid rgb(64 90 194 / 35%);
+  outline-offset: 3px;
+}
+
+.submitButton:disabled {
+  cursor: wait;
+  opacity: 0.7;
+}
+
+@media (max-width: 560px) {
+  .page {
+    padding: 28px 14px 48px;
+  }
+
+  .card {
+    padding: 26px 20px;
+  }
+
+  .card h1 {
+    font-size: 26px;
+  }
+
+  .form {
+    grid-template-columns: 1fr;
+    gap: 17px;
+  }
+}

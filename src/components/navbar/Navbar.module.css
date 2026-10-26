@@ -1,0 +1,109 @@
+.header {
+  width: 100%;
+  padding: 18px 3.6%;
+  background: linear-gradient(115deg, #123393, #234bc7);
+}
+
+.navbarContainer {
+  width: min(100%, 1440px);
+  min-height: 70px;
+  margin: 0 auto;
+  overflow: hidden;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 2px 8px rgb(12 31 91 / 12%);
+}
+
+.navbarMenu {
+  display: flex;
+  min-height: inherit;
+  align-items: center;
+  justify-content: space-around;
+  overflow-x: auto;
+}
+
+.navbarItem {
+  position: relative;
+  display: flex;
+  min-width: 0;
+  height: 100%;
+  flex: 1 0 auto;
+  align-items: stretch;
+  justify-content: center;
+}
+
+.navbarItem a {
+  display: flex;
+  min-height: 70px;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  padding: 0 clamp(9px, 1vw, 15px);
+  color: #292929;
+  font-size: 18px;
+  font-weight: 400;
+  white-space: nowrap;
+  transition: color 160ms ease;
+}
+
+.navbarItem a:hover,
+.navbarItem a:focus-visible {
+  color: #3d5bff;
+}
+
+.navbarItem a:focus-visible {
+  outline: 3px solid #3d5bff;
+  outline-offset: -5px;
+}
+
+.active a {
+  color: #3d5bff;
+}
+
+.active::after {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 4px;
+  background: #3d5bff;
+  content: "";
+}
+
+@media (max-width: 560px) {
+  .header {
+    padding: 14px 12px;
+  }
+
+  .navbarContainer {
+    min-height: 76px;
+  }
+
+  .navbarMenu {
+    overflow-x: auto;
+    justify-content: flex-start;
+  }
+
+  .navbarItem {
+    flex: 0 0 auto;
+  }
+
+  .navbarItem a {
+    min-height: 76px;
+    gap: 8px;
+    padding: 0 14px;
+    font-size: 16px;
+  }
+
+  .navbarItem a svg {
+    width: 22px;
+    height: 22px;
+  }
+}
+
+@media (min-width: 561px) {
+  .navbarItem a svg {
+    width: 24px;
+    height: 24px;
+  }
+}
