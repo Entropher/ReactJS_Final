@@ -1,0 +1,190 @@
+.page {
+  display: flex;
+  min-height: 100vh;
+  min-height: 100svh;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 44px 20px;
+  color: #17212d;
+}
+
+.card {
+  width: min(100%, 640px);
+  padding: 40px;
+  border: 1px solid #e7ebed;
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0 20px 48px rgb(28 43 53 / 12%);
+}
+
+.eyebrow {
+  margin-bottom: 8px;
+  color: #9a8540;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+}
+
+.card h1 {
+  font-size: 34px;
+  font-weight: 750;
+  letter-spacing: -0.035em;
+  line-height: 1.15;
+}
+
+.description {
+  margin-top: 8px;
+  color: #77808a;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.securityNote {
+  margin-top: 12px;
+  padding: 10px 12px;
+  border-radius: 7px;
+  background: #fff6e8;
+  color: #71521c;
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.form {
+  display: grid;
+  margin-top: 24px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.field {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.field label {
+  color: #59636d;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.field input {
+  width: 100%;
+  min-height: 48px;
+  padding: 0 14px;
+  border: 1px solid #dce1e4;
+  border-radius: 8px;
+  background: #fff;
+  color: #17212d;
+  font: inherit;
+  box-shadow: 0 1px 3px rgb(23 33 45 / 5%);
+}
+
+.field input:focus {
+  border-color: #243244;
+  outline: 3px solid rgb(36 50 68 / 13%);
+}
+
+.field input[aria-invalid="true"] {
+  border-color: #b3261e;
+}
+
+.fieldError,
+.submitError {
+  color: #a32620;
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.submitError,
+.success,
+.submitButton {
+  grid-column: 1 / -1;
+}
+
+.submitError,
+.success {
+  padding: 12px 14px;
+  border-radius: 8px;
+  line-height: 1.5;
+}
+
+.submitError {
+  background: #fff1f0;
+}
+
+.success {
+  background: #edf7ef;
+  color: #24623a;
+  font-size: 14px;
+}
+
+.submitButton {
+  min-height: 48px;
+  margin-top: 6px;
+  border: 0;
+  border-radius: 8px;
+  background: #142131;
+  color: #fff;
+  cursor: pointer;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  transition: background-color 150ms ease;
+}
+
+.submitButton:hover:not(:disabled) {
+  background: #26394d;
+}
+
+.submitButton:focus-visible {
+  outline: 3px solid rgb(20 33 49 / 35%);
+  outline-offset: 3px;
+}
+
+.submitButton:disabled {
+  cursor: wait;
+  opacity: 0.7;
+}
+
+.accountPrompt {
+  margin-top: 40px;
+  color: #26313c;
+  font-size: 14px;
+  text-align: center;
+}
+
+.accountPrompt a {
+  color: #17212d;
+  font-weight: 700;
+}
+
+.accountPrompt a:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+@media (max-width: 560px) {
+  .page {
+    padding: 32px 14px;
+  }
+
+  .card {
+    padding: 32px 24px;
+  }
+
+  .card h1 {
+    font-size: 26px;
+  }
+
+  .form {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .accountPrompt {
+    margin-top: 30px;
+  }
+}

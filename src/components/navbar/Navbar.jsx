@@ -14,7 +14,7 @@ const icons = {
   home: House,
   profile: UserRound,
   cart: ShoppingCart,
-  register: UserRoundPlus,
+  login: UserRoundPlus,
 };
 
 const Navbar = ({ data }) => {

@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import styles from "./register.module.css";
+import Link from "next/link";
 
 const registrationSchema = yup.object({
   firstName: yup
@@ -121,8 +122,8 @@ export default function RegisterPage() {
   return (
     <main className={styles.page}>
       <section className={styles.card} aria-labelledby="register-title">
-        <p className={styles.eyebrow}>მომხმარებლის პროფილი</p>
-        <h1 id="register-title">Login</h1>
+        <p className={styles.eyebrow}>ანგარიშის შექმნა</p>
+        <h1 id="register-title">შექმენით ანგარიში</h1>
         <p className={styles.description}>
           შეავსეთ ველები ახალი მომხმარებლის დასარეგისტრირებლად.
         </p>
@@ -182,6 +183,9 @@ export default function RegisterPage() {
           </button>
         </form>
       </section>
+      <p className={styles.accountPrompt}>
+        უკვე გაქვთ ანგარიში? <Link href="/login">შესვლა</Link>
+      </p>
     </main>
   );
 }
