@@ -8,7 +8,7 @@ The app simulates a basic online shopping experience with:
 
 - A home/products catalog page
 - Product detail pages
-- Cart quantity controls and removal
+- Redux-powered cart with quantity controls, removal, item count, and total
 - User profile data from a fake user endpoint
 - User registration form with Yup validation and React Hook Form
 - Responsive layout and reusable UI components
@@ -18,6 +18,7 @@ The app simulates a basic online shopping experience with:
 
 - Next.js 16
 - React 19
+- Redux Toolkit and React Redux
 - JavaScript
 - CSS Modules
 - Fake Store API
@@ -60,6 +61,9 @@ src/
 The registration form validates all fields locally. For safety, it does not send
 the password to the public mock endpoint; JSONPlaceholder does not persist
 submitted user data.
+
+Products can be added to the cart from the catalog and product detail pages.
+The cart's item count and total are calculated from the Redux store.
 
 ## API
 

@@ -3,6 +3,7 @@
 import styles from "./page.module.css";
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import AddToCartButton from "@/app/cart/AddToCartButton";
 
 export default function Home() {
   const [products, setProducts] = useState([]);
@@ -117,6 +118,7 @@ export default function Home() {
                     >
                       დეტალები
                     </Link>
+                    <AddToCartButton product={product} />
                     <button
                       className={styles.deleteButton}
                       type="button"

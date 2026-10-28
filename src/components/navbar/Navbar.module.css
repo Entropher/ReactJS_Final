@@ -46,6 +46,20 @@
   transition: color 160ms ease;
 }
 
+.cartCount {
+  display: inline-grid;
+  min-width: 21px;
+  height: 21px;
+  place-items: center;
+  padding: 0 5px;
+  border-radius: 999px;
+  background: #234bc7;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1;
+}
+
 .navbarItem a:hover,
 .navbarItem a:focus-visible {
   color: #3d5bff;
