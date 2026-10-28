@@ -161,6 +161,20 @@
   text-align: center;
 }
 
+.summary {
+  display: flex;
+  justify-content: flex-end;
+  gap: 32px;
+  padding: 24px 22px;
+  color: #444;
+  font-size: 15px;
+}
+
+.summary strong {
+  color: #222;
+  font-size: 19px;
+}
+
 @media (max-width: 700px) {
   .page {
     padding: 30px 14px 48px;
@@ -230,6 +244,14 @@
 
   .remove {
     width: 34px;
+  }
+
+  .summary {
+    flex-direction: column;
+    gap: 8px;
+    padding-right: 8px;
+    padding-left: 8px;
+    text-align: right;
   }
 }
 

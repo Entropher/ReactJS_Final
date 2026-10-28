@@ -1,73 +1,29 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Minus, Plus, Trash2 } from "lucide-react";
+import {
+  decreaseQuantity,
+  increaseQuantity,
+  removeFromCart,
+  selectCartItemCount,
+  selectCartItems,
+  selectCartTotal,
+} from "./cartSlice";
 import styles from "./cart.module.css";
 
 export default function CartPage() {
-  const [items, setItems] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState("");
-
-  useEffect(() => {
-    fetch("/api/products")
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("პროდუქტების ჩატვირთვა ვერ მოხერხდა.");
-        }
-
-        return response.json();
-      })
-      .then((products) => {
-        const clothing = products
-          .filter(
-            (product) =>
-              product.category.toLowerCase().includes("clothing") &&
-              !product.title.toLowerCase().includes("backpack"),
-          )
-          .slice(0, 3)
-          .map((product, index) => ({
-            ...product,
-            quantity: index === 1 ? 2 : 1,
-          }));
-
-        setItems(clothing);
-      })
-      .catch(() => setError("პროდუქტების ჩატვირთვა ვერ მოხერხდა."))
-      .finally(() => setIsLoading(false));
-  }, []);
-
-  const changeQuantity = (productId, amount) => {
-    setItems((currentItems) =>
-      currentItems.map((item) =>
-        item.id === productId
-          ? {
-              ...item,
-              quantity: Math.min(10, Math.max(1, item.quantity + amount)),
-            }
-          : item,
-      ),
-    );
-  };
-
-  const removeItem = (productId) => {
-    setItems((currentItems) =>
-      currentItems.filter((item) => item.id !== productId),
-    );
-  };
+  const dispatch = useDispatch();
+  const items = useSelector(selectCartItems);
+  const itemCount = useSelector(selectCartItemCount);
+  const total = useSelector(selectCartTotal);
 
   return (
     <main className={styles.page}>
       <section className={styles.cart} aria-labelledby="cart-title">
         <h1 id="cart-title">კალათა</h1>
 
-        {isLoading ? (
-          <p className={styles.message}>პროდუქტები იტვირთება...</p>
-        ) : error ? (
-          <p className={styles.message} role="alert">
-            {error}
-          </p>
-        ) : items.length === 0 ? (
+        {items.length === 0 ? (
           <p className={styles.message}>კალათა ცარიელია.</p>
         ) : (
           <>
@@ -100,7 +56,7 @@ export default function CartPage() {
                   >
                     <button
                       type="button"
-                      onClick={() => changeQuantity(item.id, -1)}
+                      onClick={() => dispatch(decreaseQuantity(item.id))}
                       disabled={item.quantity <= 1}
                       aria-label="რაოდენობის შემცირება"
                     >
@@ -109,7 +65,7 @@ export default function CartPage() {
                     <output>{item.quantity}</output>
                     <button
                       type="button"
-                      onClick={() => changeQuantity(item.id, 1)}
+                      onClick={() => dispatch(increaseQuantity(item.id))}
                       disabled={item.quantity >= 10}
                       aria-label="რაოდენობის გაზრდა"
                     >
@@ -122,7 +78,7 @@ export default function CartPage() {
                   <button
                     className={styles.remove}
                     type="button"
-                    onClick={() => removeItem(item.id)}
+                    onClick={() => dispatch(removeFromCart(item.id))}
                     aria-label={`${item.title} კალათიდან წაშლა`}
                   >
                     <Trash2 aria-hidden="true" />
@@ -130,6 +86,12 @@ export default function CartPage() {
                 </li>
               ))}
             </ul>
+            <section className={styles.summary} aria-label="კალათის შეჯამება">
+              <p>პროდუქტების რაოდენობა: {itemCount}</p>
+              <p>
+                ჯამური გადასახადი: <strong>${total.toFixed(2)}</strong>
+              </p>
+            </section>
           </>
         )}
       </section>

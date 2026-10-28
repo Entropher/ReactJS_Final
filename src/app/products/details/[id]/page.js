@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import AddToCartButton from "@/app/cart/AddToCartButton";
 import styles from "./detail.module.css";
 
 export default async function ProductDetailsPage({ params }) {
@@ -62,6 +63,7 @@ export default async function ProductDetailsPage({ params }) {
           </p>
           <p className={styles.price}>${product.price.toFixed(2)}</p>
           <p className={styles.description}>{product.description}</p>
+          <AddToCartButton product={product} />
         </div>
       </article>
     </main>

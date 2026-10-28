@@ -1,8 +1,10 @@
 "use client";
 
 import { usePathname } from "next/navigation";
+import { Provider } from "react-redux";
 import Footer from "@/components/footer/Footer";
 import Navbar from "@/components/navbar/Navbar";
+import { store } from "@/lib/store/store";
 
 const navbarItems = [
   { id: 1, name: "Home", url: "/", icon: "home" },
@@ -17,19 +19,21 @@ const footerItems = [
   { id: 3, name: "Interest-Based Ads", url: "/interest-based-ads" },
 ];
 
-export default function SiteChrome({ children }) {
+export default function AppShell({ children }) {
   const pathname = usePathname();
   const isAuthPage = pathname === "/login" || pathname === "/register";
 
-  if (isAuthPage) {
-    return children;
-  }
-
   return (
-    <>
-      <Navbar data={navbarItems} />
-      {children}
-      <Footer list={footerItems} />
-    </>
+    <Provider store={store}>
+      {isAuthPage ? (
+        children
+      ) : (
+        <>
+          <Navbar data={navbarItems} />
+          {children}
+          <Footer list={footerItems} />
+        </>
+      )}
+    </Provider>
   );
 }

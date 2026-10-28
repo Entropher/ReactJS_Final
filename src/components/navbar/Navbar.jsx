@@ -2,12 +2,14 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useSelector } from "react-redux";
 import {
   House,
   ShoppingCart,
   UserRound,
   UserRoundPlus,
 } from "lucide-react";
+import { selectCartItemCount } from "@/app/cart/cartSlice";
 import styles from "./Navbar.module.css";
 
 const icons = {
@@ -19,6 +21,7 @@ const icons = {
 
 const Navbar = ({ data }) => {
   const pathname = usePathname();
+  const cartItemCount = useSelector(selectCartItemCount);
 
   return (
     <nav className={styles.header}>
@@ -42,6 +45,11 @@ const Navbar = ({ data }) => {
                 >
                   <Icon aria-hidden="true" size={30} strokeWidth={1.9} />
                   <span>{item.name}</span>
+                  {item.icon === "cart" && cartItemCount > 0 && (
+                    <span className={styles.cartCount} aria-label={`${cartItemCount} პროდუქტი`}>
+                      {cartItemCount}
+                    </span>
+                  )}
                 </Link>
               </div>
             );
