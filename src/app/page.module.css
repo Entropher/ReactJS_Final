@@ -122,18 +122,26 @@
 }
 
 .productFooter {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: end;
   gap: 10px;
   margin-top: auto;
   padding-top: 10px;
+}
+
+.productActions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
 }
 
 .price {
   color: #171717;
   font-size: 21px;
   font-weight: 700;
+  white-space: nowrap;
 }
 
 .detailsLink {

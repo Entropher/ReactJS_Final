@@ -1,11 +1,14 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import styles from "./page.module.css";
+
+const TOKEN_STORAGE_KEY = "authToken";
 
 const loginSchema = yup.object({
   username: yup.string().trim().required("მომხმარებლის სახელი სავალდებულოა."),
@@ -13,9 +16,22 @@ const loginSchema = yup.object({
 });
 
 export default function LoginPage() {
+  const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
+  const [rememberMe, setRememberMe] = useState(false);
   const [submitMessage, setSubmitMessage] = useState("");
   const [isLoginSuccessful, setIsLoginSuccessful] = useState(false);
+
+  useEffect(() => {
+    try {
+      if (localStorage.getItem(TOKEN_STORAGE_KEY)) {
+        router.replace("/");
+      }
+    } catch {
+      throw new Error("შენახული ავტორიზაციის წაკითხვა ვერ მოხერხდა.");
+    }
+  }, [router]);
+
   const {
     register,
     handleSubmit,
@@ -61,6 +77,19 @@ export default function LoginPage() {
 
       if (typeof result.token !== "string" || !result.token) {
         setSubmitMessage("სერვერის პასუხი არასწორია. სცადეთ მოგვიანებით.");
+        return;
+      }
+
+      try {
+        if (rememberMe) {
+          localStorage.setItem(TOKEN_STORAGE_KEY, result.token);
+        } else {
+          localStorage.removeItem(TOKEN_STORAGE_KEY);
+        }
+      } catch {
+        setSubmitMessage(
+          "ავტორიზაცია შესრულდა, მაგრამ ტოკენის შენახვა ვერ მოხერხდა.",
+        );
         return;
       }
 
@@ -129,6 +158,14 @@ export default function LoginPage() {
           >
             {showPassword ? "პაროლის დამალვა" : "პაროლის ნახვა"}
           </button>
+          <label className={styles.rememberMe}>
+            <input
+              type="checkbox"
+              checked={rememberMe}
+              onChange={(event) => setRememberMe(event.target.checked)}
+            />
+            <span>Remember me</span>
+          </label>
           {submitMessage && (
             <p
               className={`${styles.submitMessage} ${

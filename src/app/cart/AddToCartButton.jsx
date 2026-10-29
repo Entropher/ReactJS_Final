@@ -21,9 +21,12 @@ export default function AddToCartButton({ product }) {
       type="button"
       onClick={handleAddToCart}
       aria-live="polite"
+      aria-label={
+        wasAdded ? "კალათაში დამატებულია" : "კალათაში დამატება"
+      }
+      title={wasAdded ? "კალათაში დამატებულია" : "კალათაში დამატება"}
     >
       <ShoppingCart aria-hidden="true" size={16} />
-      {wasAdded ? "კალათაში დამატებულია" : "კალათაში დამატება"}
     </button>
   );
 }

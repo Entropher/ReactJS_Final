@@ -1,5 +1,12 @@
 .authLayout {
-  min-height: 100vh;
-  min-height: 100svh;
+  min-height: calc(100vh - 106px);
+  min-height: calc(100svh - 106px);
   background: #eef2f4;
+}
+
+@media (max-width: 560px) {
+  .authLayout {
+    min-height: calc(100vh - 104px);
+    min-height: calc(100svh - 104px);
+  }
 }
