@@ -25,15 +25,9 @@ export default function AppShell({ children }) {
 
   return (
     <Provider store={store}>
-      {isAuthPage ? (
-        children
-      ) : (
-        <>
-          <Navbar data={navbarItems} />
-          {children}
-          <Footer list={footerItems} />
-        </>
-      )}
+      <Navbar data={navbarItems} />
+      {children}
+      {!isAuthPage && <Footer list={footerItems} />}
     </Provider>
   );
 }

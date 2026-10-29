@@ -1,110 +1,101 @@
-# ReactJS Midterm Project
+# Fake Store
 
-This project is a small e-commerce storefront built with Next.js and React. It pulls product data from the Fake Store API and presents a storefront experience with a product list, product detail pages, cart management, and a user profile section.
+A Georgian-language storefront demo built with Next.js and React. Browse products from the Fake Store API, view product details, manage a shopping cart, and try the mock login and registration flows.
 
-## Overview
+## Features
 
-The app simulates a basic online shopping experience with:
-
-- A home/products catalog page
-- Product detail pages
-- Redux-powered cart with quantity controls, removal, item count, and total
-- User profile data from a fake user endpoint
-- User registration form with Yup validation and React Hook Form
-- Responsive layout and reusable UI components
-- Dynamic fetching from a public API
+- Product catalog showing up to 20 products, with loading and error states
+- Product detail pages with descriptions, prices, and ratings
+- Add products to a Redux-powered cart, update quantities, and remove items
+- Cart quantity is capped at 10 per product; cart data is held in memory and resets when the app reloads
+- Temporarily remove products from the catalog and restore them during the current page session
+- Demo user profile loaded from the Fake Store API
+- Login form with Yup validation and an optional “Remember me” token stored in browser local storage
+- Registration form with Yup validation and React Hook Form
+- Shared navigation, cart item count, footer, and responsive CSS Module styling
 
 ## Tech Stack
 
-- Next.js 16
+- Next.js 16.3
 - React 19
 - Redux Toolkit and React Redux
 - JavaScript
 - CSS Modules
-- Fake Store API
-- Lucide React icons
+- React Hook Form, Yup, and `@hookform/resolvers`
+- Lucide React
+- Fake Store API and JSONPlaceholder mock API
+
+## Routes
+
+| Route | Description |
+| --- | --- |
+| `/` | Product catalog |
+| `/products/details/[id]` | Details for an individual product |
+| `/cart` | Cart contents, quantity controls, and total |
+| `/profile` | Demo profile for Fake Store API user 3 |
+| `/login` | Mock login form |
+| `/register` | Validated registration form |
+
+## Data and Demo Limitations
+
+- The catalog is fetched through the local `/api/products` route, which proxies `https://fakestoreapi.com/products`.
+- Product detail pages request `https://fakestoreapi.com/products/[id]` directly.
+- The profile page always displays the demo user at `https://fakestoreapi.com/users/3`.
+- Login is sent to `https://fakestoreapi.com/auth/login`. The optional remembered token is stored in local storage; this demo does not use it to protect routes or authorize other API requests.
+- Registration submits the first name, last name, age, email, and phone to `https://jsonplaceholder.typicode.com/users`. The password is validated locally and is not sent. JSONPlaceholder is a mock service and does not persist the registration.
+- Cart contents and catalog removals are kept in client-side state and are not persisted.
+- The app requires an internet connection to load product/profile data and use the mock authentication endpoints.
 
 ## Project Structure
 
 ```text
 src/
 ├── app/
+│   ├── (auth)/
+│   │   ├── login/
+│   │   └── register/
 │   ├── api/
 │   │   └── products/
-│   │       └── route.js
 │   ├── cart/
-│   │   └── page.js
 │   ├── products/
 │   │   └── details/
 │   │       └── [id]/
-│   │           └── page.js
 │   ├── profile/
-│   │   └── page.js
+│   ├── AppShell.jsx
 │   ├── globals.css
 │   ├── layout.js
-│   ├── page.js
-│   └── page.module.css
+│   └── page.js
 ├── components/
 │   ├── footer/
 │   └── navbar/
-└── ...
+└── lib/
+    └── store/
+        └── store.js
 ```
-
-## Main Routes
-
-- `/` - product catalog and storefront home page
-- `/products/details/[id]` - individual product detail page
-- `/cart` - shopping cart view
-- `/profile` - user profile page
-- `/register` - registration form, submitted to JSONPlaceholder's mock users endpoint
-
-The registration form validates all fields locally. For safety, it does not send
-the password to the public mock endpoint; JSONPlaceholder does not persist
-submitted user data.
-
-Products can be added to the cart from the catalog and product detail pages.
-The cart's item count and total are calculated from the Redux store.
-
-## API
-
-The app uses the public Fake Store API:
-
-- `https://fakestoreapi.com/products`
-- `https://fakestoreapi.com/users/3`
-
-The local API route in `src/app/api/products/route.js` acts as a proxy to fetch product data for the frontend.
 
 ## Getting Started
 
-1. Install dependencies:
+Install dependencies:
 
 ```bash
 npm install
 ```
 
-2. Start the development server:
+Start the development server:
 
 ```bash
 npm run dev
 ```
 
-3. Open the app in your browser:
-
-```text
-http://localhost:3000
-```
+Open [http://localhost:3000](http://localhost:3000).
 
 ## Available Scripts
 
 ```bash
-npm run dev     # start the Next.js development server
-npm run build   # create production build
-npm run start   # run the production build
-npm run lint    # run ESLint checks
+npm run dev     # Start the Next.js development server
+npm run build   # Create a production build
+npm run start   # Start the production server
+npm run lint    # Run ESLint
 ```
 
-## Notes
-
-- This project is a frontend demo and uses mock/fake data.
-- Product and profile data are loaded from remote APIs, so a network connection is required when running the app.
-- The project is designed as a learning assignment and storefront prototype rather than a production e-commerce platform.
+This project is a learning/demo storefront, not a production e-commerce application.

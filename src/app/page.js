@@ -112,13 +112,15 @@ export default function Home() {
                   </p>
                   <div className={styles.productFooter}>
                     <p className={styles.price}>${product.price.toFixed(2)}</p>
-                    <Link
-                      className={styles.detailsLink}
-                      href={`/products/details/${product.id}`}
-                    >
-                      დეტალები
-                    </Link>
-                    <AddToCartButton product={product} />
+                    <div className={styles.productActions}>
+                      <Link
+                        className={styles.detailsLink}
+                        href={`/products/details/${product.id}`}
+                      >
+                        დეტალები
+                      </Link>
+                      <AddToCartButton product={product} />
+                    </div>
                     <button
                       className={styles.deleteButton}
                       type="button"

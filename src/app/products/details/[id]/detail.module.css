@@ -93,6 +93,10 @@
   line-height: 1.7;
 }
 
+.details > button {
+  margin-top: 54px;
+}
+
 @media (max-width: 700px) {
   .page {
     padding: 24px 16px 48px;
