@@ -9,6 +9,10 @@ import * as yup from "yup";
 import styles from "./page.module.css";
 
 const TOKEN_STORAGE_KEY = "authToken";
+const DEMO_CREDENTIALS = {
+  username: "johnd",
+  password: "m38rmF$",
+};
 
 const loginSchema = yup.object({
   username: yup.string().trim().required("მომხმარებლის სახელი სავალდებულოა."),
@@ -32,16 +36,25 @@ export default function LoginPage() {
     }
   }, [router]);
 
+  useEffect(() => {
+    if (!isLoginSuccessful) {
+      return;
+    }
+
+    const redirectTimeout = window.setTimeout(() => {
+      router.replace("/profile");
+    }, 1000);
+
+    return () => window.clearTimeout(redirectTimeout);
+  }, [isLoginSuccessful, router]);
+
   const {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
   } = useForm({
     resolver: yupResolver(loginSchema),
-    defaultValues: {
-      username: "",
-      password: "",
-    },
+    defaultValues: DEMO_CREDENTIALS,
   });
 
   const onSubmit = async (values) => {

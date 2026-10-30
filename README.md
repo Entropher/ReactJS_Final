@@ -10,8 +10,8 @@ A Georgian-language storefront demo built with Next.js and React. Browse product
 - Cart quantity is capped at 10 per product; cart data is held in memory and resets when the app reloads
 - Temporarily remove products from the catalog and restore them during the current page session
 - Demo user profile loaded from the Fake Store API
-- Login form with Yup validation and an optional “Remember me” token stored in browser local storage
-- Registration form with Yup validation and React Hook Form
+- Login form prefilled with the Fake Store API demo account (`johnd` / `m38rmF$`), Yup validation, and an optional “Remember me” token stored in browser local storage
+- Registration form with Yup validation for username, email, and password, optional profile details, and React Hook Form
 - Shared navigation, cart item count, footer, and responsive CSS Module styling
 
 ## Tech Stack
@@ -38,11 +38,10 @@ A Georgian-language storefront demo built with Next.js and React. Browse product
 
 ## Data and Demo Limitations
 
-- The catalog is fetched through the local `/api/products` route, which proxies `https://fakestoreapi.com/products`.
-- Product detail pages request `https://fakestoreapi.com/products/[id]` directly.
+- The catalog fetches `https://fakestoreapi.com/products`, and product detail pages fetch `https://fakestoreapi.com/products/[id]`.
 - The profile page always displays the demo user at `https://fakestoreapi.com/users/3`.
 - Login is sent to `https://fakestoreapi.com/auth/login`. The optional remembered token is stored in local storage; this demo does not use it to protect routes or authorize other API requests.
-- Registration submits the first name, last name, age, email, and phone to `https://jsonplaceholder.typicode.com/users`. The password is validated locally and is not sent. JSONPlaceholder is a mock service and does not persist the registration.
+- Registration submits the username and email, plus any optional profile details provided, to `https://dummyjson.com/users/add`. The password is validated locally and is not sent. DummyJSON is a mock service and does not persist the registration; a successful response returns the user to the catalog.
 - Cart contents and catalog removals are kept in client-side state and are not persisted.
 - The app requires an internet connection to load product/profile data and use the mock authentication endpoints.
 
@@ -54,8 +53,6 @@ src/
 │   ├── (auth)/
 │   │   ├── login/
 │   │   └── register/
-│   ├── api/
-│   │   └── products/
 │   ├── cart/
 │   ├── products/
 │   │   └── details/

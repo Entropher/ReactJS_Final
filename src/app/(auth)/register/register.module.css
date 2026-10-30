@@ -57,6 +57,31 @@
   gap: 16px;
 }
 
+.optionalFields {
+  grid-column: 1 / -1;
+  color: #59636d;
+  font-size: 14px;
+}
+
+.optionalFields summary {
+  width: fit-content;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.optionalFields summary:focus-visible {
+  border-radius: 3px;
+  outline: 3px solid rgb(36 50 68 / 20%);
+  outline-offset: 3px;
+}
+
+.optionalFieldsGrid {
+  display: grid;
+  margin-top: 16px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
 .field {
   display: flex;
   min-width: 0;
@@ -182,6 +207,11 @@
   }
 
   .form {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .optionalFieldsGrid {
     grid-template-columns: 1fr;
     gap: 14px;
   }

@@ -12,7 +12,7 @@ export default function Home() {
   const [error, setError] = useState("");
 
   useEffect(() => {
-    fetch("/api/products")
+    fetch("https://fakestoreapi.com/products")
       .then((response) => {
         if (!response.ok) {
           throw new Error("პროდუქტების ჩატვირთვა ვერ მოხერხდა.");
