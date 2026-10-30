@@ -63,7 +63,7 @@ export default async function ProductDetailsPage({ params }) {
           </p>
           <p className={styles.price}>${product.price.toFixed(2)}</p>
           <p className={styles.description}>{product.description}</p>
-          <AddToCartButton product={product} />
+          <AddToCartButton product={product} className={styles.cartControl} />
         </div>
       </article>
     </main>

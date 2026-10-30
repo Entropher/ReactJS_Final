@@ -138,6 +138,7 @@
 }
 
 .price {
+  align-self: start;
   color: #171717;
   font-size: 21px;
   font-weight: 700;

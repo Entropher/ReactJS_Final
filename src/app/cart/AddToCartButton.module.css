@@ -1,3 +1,7 @@
+.control {
+  display: inline-flex;
+}
+
 .button {
   display: grid;
   width: 36px;
@@ -23,6 +27,54 @@
 }
 
 .button:focus-visible {
+  outline: 2px solid #234bc7;
+  outline-offset: 2px;
+}
+
+.quantity {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.quantity button {
+  display: grid;
+  width: 28px;
+  height: 36px;
+  flex: 0 0 auto;
+  place-items: center;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #222;
+  cursor: pointer;
+}
+
+.quantity button svg {
+  width: 20px;
+  height: 20px;
+}
+
+.quantity button:disabled {
+  color: #b8b8b8;
+  cursor: not-allowed;
+}
+
+.quantity output {
+  display: grid;
+  width: 36px;
+  height: 36px;
+  place-items: center;
+  border: 1px solid #dedede;
+  border-radius: 6px;
+  background: #fff;
+  color: #222;
+  font-size: 18px;
+  line-height: 1;
+}
+
+.quantity button:focus-visible {
   outline: 2px solid #234bc7;
   outline-offset: 2px;
 }

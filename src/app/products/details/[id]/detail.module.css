@@ -93,7 +93,7 @@
   line-height: 1.7;
 }
 
-.details > button {
+.details > .cartControl {
   margin-top: 54px;
 }
 
