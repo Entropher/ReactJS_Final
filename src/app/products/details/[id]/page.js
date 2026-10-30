@@ -32,7 +32,21 @@ export default async function ProductDetailsPage({ params }) {
     );
   }
 
-  const product = await response.json();
+  let product;
+  try {
+    product = await response.json();
+  } catch {
+    return (
+      <main className={styles.page}>
+        <Link className={styles.backLink} href="/">
+          ← ყველა პროდუქტი
+        </Link>
+        <p className={styles.description} role="alert">
+          პროდუქტის ჩატვირთვა ვერ მოხერხდა.
+        </p>
+      </main>
+    );
+  }
 
   if (!product?.id) {
     notFound();

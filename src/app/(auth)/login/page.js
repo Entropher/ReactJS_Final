@@ -27,16 +27,6 @@ export default function LoginPage() {
   const [isLoginSuccessful, setIsLoginSuccessful] = useState(false);
 
   useEffect(() => {
-    try {
-      if (localStorage.getItem(TOKEN_STORAGE_KEY)) {
-        router.replace("/");
-      }
-    } catch {
-      throw new Error("შენახული ავტორიზაციის წაკითხვა ვერ მოხერხდა.");
-    }
-  }, [router]);
-
-  useEffect(() => {
     if (!isLoginSuccessful) {
       return;
     }

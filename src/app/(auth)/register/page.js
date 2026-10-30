@@ -78,7 +78,7 @@ const optionalFields = [
 export default function RegisterPage() {
   const router = useRouter();
   const [submitError, setSubmitError] = useState("");
-  const nameInputRef = useRef(null);
+  const usernameInputRef = useRef(null);
   const {
     register,
     handleSubmit,
@@ -98,7 +98,7 @@ export default function RegisterPage() {
   });
 
   useEffect(() => {
-    nameInputRef.current?.focus();
+    usernameInputRef.current?.focus();
   }, []);
 
   const onSubmit = async (values) => {
@@ -175,8 +175,8 @@ export default function RegisterPage() {
                   {...fieldRegistration}
                   ref={(element) => {
                     fieldRegistration.ref(element);
-                    if (name === "firstName") {
-                      nameInputRef.current = element;
+                    if (name === "username") {
+                      usernameInputRef.current = element;
                     }
                   }}
                 />
